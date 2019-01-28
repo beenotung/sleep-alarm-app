@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StorageProvider } from '../../providers/storage/storage';
+import { resetGenId } from '../../utils/id';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { sound } from '../../models/alarm';
 
-/**
- * Generated class for the SettingsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,9 +12,12 @@ import { StorageProvider } from '../../providers/storage/storage';
   templateUrl: 'settings.html',
 })
 export class SettingsPage {
+  sound = sound;
 
   constructor(public navCtrl: NavController,
               public storage: StorageProvider,
+              public local: LocalNotifications,
+              // public musicCtrl:MusicControls,
               public navParams: NavParams) {
   }
 
@@ -27,6 +27,12 @@ export class SettingsPage {
 
   clear() {
     this.storage.storage.clear();
+    resetGenId();
+    this.local.cancelAll();
+    this.local.clearAll();
+  }
+
+  play() {
   }
 
 }

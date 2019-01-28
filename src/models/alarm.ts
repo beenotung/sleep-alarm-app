@@ -1,4 +1,5 @@
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import * as util from 'util';
 
 export interface Alarm {
   id: number
@@ -10,6 +11,7 @@ export interface Alarm {
   active: boolean
 }
 
+export let sound = 'assets/audio/getup.mp3';
 
 export async function checkAlarm(alarm: Alarm, local: LocalNotifications) {
   debugger;
@@ -22,19 +24,30 @@ export async function checkAlarm(alarm: Alarm, local: LocalNotifications) {
     for (let i = alarm.weekday_start; i <= alarm.weekday_end; i++) {
 
     }
+    let sub = local.on('trigger').subscribe(
+      x => {
+        console.log('triggered:', x);
+        alert('triggered now: ' + util.format(x));
+        sub.unsubscribe();
+      },
+    );
     local.schedule({
       id: +alarm.id,
       title: alarm.name,
       text: 'scheduled at ' + date.toLocaleString(),
+      data: date,
       trigger: {
         every: {
           hour: alarm.hour,
           minute: alarm.minute,
         },
       },
-      sound: 'assets/audio/getup.mp3',
+      sound: sound,
     });
   } else {
-    await local.cancel(+alarm.id);
+    let ids = await local.getIds();
+    if (ids.indexOf(+alarm.id) !== -1) {
+      await local.cancel(+alarm.id);
+    }
   }
 }

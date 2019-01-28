@@ -7,3 +7,8 @@ export function genId(): number {
   storeSet('acc', acc);
   return acc;
 }
+
+export function resetGenId() {
+  acc = 0;
+  storeSet('acc', acc);
+}
