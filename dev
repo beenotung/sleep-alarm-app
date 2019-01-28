@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+set -o pipefail
+cd node_modules/@beenotung/tslib
+rm -rf index.*
+rm -rf object.ts
+ionic serve

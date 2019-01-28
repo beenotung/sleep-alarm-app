@@ -1,0 +1,19 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <alarm-cmp [alarm]="alarm"></alarm-cmp>
+
+  <ion-buttons text-center>
+    <button item-end ion-button icon-only color="dark" (click)="cancel()"><ion-icon name="trash"></ion-icon></button>
+    <button item-end ion-button icon-only (click)="save()"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-buttons>
+
+</ion-content>

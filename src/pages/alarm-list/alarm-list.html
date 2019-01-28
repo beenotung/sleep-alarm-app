@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Alarms</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+    <div *ngFor="let alarm of alarms">
+      <ion-buttons text-end>
+        <button ion-button icon-only (click)="cancel(alarm)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+        <button ion-button icon-only (click)="save(alarm)">
+          <ion-icon name="checkmark"></ion-icon>
+        </button>
+      </ion-buttons>
+      <alarm-cmp [alarm]="alarm"></alarm-cmp>
+    </div>
+  </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab icon-only (click)="create()">
+      <ion-icon name="add-circle"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

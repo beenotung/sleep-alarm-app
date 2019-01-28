@@ -1,0 +1,34 @@
+<ion-list>
+  <ion-item>
+    <ion-label>ID</ion-label>
+    <ion-input [(ngModel)]="alarm.id" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Active</ion-label>
+    <ion-toggle [(ngModel)]="alarm.active"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input [(ngModel)]="alarm.name" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Hour</ion-label>
+    <ion-input [(ngModel)]="alarm.hour" type="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Minute</ion-label>
+    <ion-input [(ngModel)]="alarm.minute" type="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Start Week Day</ion-label>
+    <ion-select [(ngModel)]="alarm.weekday_start">
+      <ion-option *ngFor="let o of weekDayOptions" [value]="o.value">{{o.text}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>End Week Day</ion-label>
+    <ion-select [(ngModel)]="alarm.weekday_end">
+      <ion-option *ngFor="let o of weekDayOptions" [value]="o.value">{{o.text}}</ion-option>
+    </ion-select>
+  </ion-item>
+</ion-list>
